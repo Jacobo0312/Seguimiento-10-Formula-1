@@ -5,11 +5,11 @@ package model;
  //Attributes
 private String Fullname;
 private int Age;
-private double [] Scores;
+public int [] Scores;
 private String Team;
 
 //Methods
-public Pilot (String pFullname, int pAge,String pTeam, double [] pScore){
+public Pilot (String pFullname, int pAge,String pTeam, int [] pScore){
 Fullname=pFullname; 
 Age=pAge;
 Team=pTeam;

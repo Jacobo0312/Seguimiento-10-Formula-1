@@ -46,15 +46,22 @@
   int Age=lector.nextInt();lector.nextLine();
   System.out.println("Enter the team of the pilot");
   String Team=lector.nextLine();lector.nextLine();
-  System.out.println("Enter time for each race");
-  double[] Scores= new double [mainChampionship.getRaces()];
+  System.out.println("Enter time for each race in seconds");
+  int[] Scores= new int [mainChampionship.getRaces()];
   for (int i=0;i<mainChampionship.getRaces();i++){
   System.out.println((i+1)+".time");
 
-  Scores[i]=lector.nextDouble();
+  Scores[i]=lector.nextInt();
   }
  String message=mainChampionship.addPilot(name, Age, Team,Scores);
  System.out.println(message);
+
+ }
+
+ public static void showAverageTimes(){
+  for (int i=0;i<mainChampionship.getRaces();i++){
+  mainChampionship.calculateAverage(mainChampionship.pilots.Scores);
+  }
 
  }
 

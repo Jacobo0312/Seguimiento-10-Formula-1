@@ -9,7 +9,7 @@ private int Year;
 private int Races;
 
 //Relations 
-private Pilot[] pilots;
+public Pilot[] pilots;
 
 //Getters an Setters 
 
@@ -52,7 +52,7 @@ public Pilot findPilot (String name){
 
 } 
 
-public String addPilot (String Fullname, int Age,String Team, double [] Scores)
+public String addPilot (String Fullname, int Age,String Team, int [] Scores)
  {
 	String message="";
 	boolean addPit=false;
@@ -80,8 +80,15 @@ public String addPilot (String Fullname, int Age,String Team, double [] Scores)
 
  }
 
- public void CalculateAverage(double [] Scores){
- 	
+ public void CalculateAverage(int [] Scores){
+for (int i=0;i<Scores.length;i++){
+        int num,hor,min,seg;
+        num=Scores[i];
+        hor=num/3600;
+        min=(num-(3600*hor))/60;
+        seg=num-((hor*3600)+(min*60));
+        System.out.println((i+1)+"."+hor+"h "+min+"m "+seg+"s");
+    }
  }
 
 
