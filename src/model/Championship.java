@@ -5,35 +5,39 @@ public class Championship{
 private final int MAX_PILOTS=15;
 
 //Attributes
-private int Year;
-private int Races;
+private int year;
+private int races;
 
 //Relations 
-public Pilot[] pilots;
+private Pilot[] pilots;
 
 //Getters an Setters 
 
 public int getYear(){
-	return Year;
+	return year;
 }
 
 public void setYear(int pYear){
-	Year=pYear;
+	year=pYear;
 }
 
 public int getRaces(){
-	return Races;
+	return races;
 }
 
 public void setRaces(int pRaces){
-	Races=pRaces;
+	races=pRaces;
+}
+
+public Pilot[] getPilots(){
+	return pilots;
 }
 
 
 //Methods
 public Championship (int Year, int Races){
-this.Year=Year;
-this.Races=Races;
+this.year=Year;
+this.races=Races;
 pilots = new Pilot[MAX_PILOTS];
 }
 
@@ -41,56 +45,53 @@ public Pilot findPilot (String name){
  Pilot objSearch=null;
  boolean findPit=false;
  for (int i=0;i<MAX_PILOTS && !findPit;i++){
- 	if (pilots[i].getName().equalsIgnoreCase(name)){
+ 	if (pilots[i] !=null && pilots[i].getName().equalsIgnoreCase(name)){
  		objSearch=pilots[i];
  		findPit=true;
  	}
-
+ 	else
+ 		objSearch=pilots[i];
  }
  return objSearch;
-
-
 } 
 
-public String addPilot (String Fullname, int Age,String Team, int [] Scores)
- {
+public String addPilot (String pFullname, int pAge,String pTeam, int [] pScores)
+{
 	String message="";
 	boolean addPit=false;
-	Pilot objSearch=findPilot(Fullname);
+	Pilot objSearch=findPilot(pFullname);
 	
 	if (objSearch!=null)
-	message="Error. the pilot already exist ";
+		message="Error. the pilot already exist ";
 	
 	else {
-	
-	for (int i=0;i<MAX_PILOTS && !addPit;i++)
-	 {
-	 
-	 if (pilots[i]==null){
-	 	 pilots[i]= new Pilot(Fullname,Age,Team,Scores);
-	 	 addPit=true;
-	 	 message="The pilot has been registered";
-	 	  }
-	 }
-	 
-	 if (addPit==true)
-	 message="I already record all the times";  
-	    }
-	 	return message;
+		for (int i=0;i<MAX_PILOTS && !addPit;i++)
+		{
+
+			if (pilots[i]==null){
+				pilots[i]= new Pilot(pFullname,pAge,pTeam,pScores);
+				addPit=true;
+				message="The pilot has been registered";
+			}
+		}
+
+		if (addPit==false)
+			message="All pilots are already created";  
+	}
+	return message;
+
+}
+
+
+  public String showAverageTimes(){
+  String message="";
+  for (int i=0;i<pilots.length;i++){
+  if (pilots[i]!=null)
+  message+=pilots[i].calculateAverage();
+  }
+  return message;
 
  }
-
- public void CalculateAverage(int [] Scores){
-for (int i=0;i<Scores.length;i++){
-        int num,hor,min,seg;
-        num=Scores[i];
-        hor=num/3600;
-        min=(num-(3600*hor))/60;
-        seg=num-((hor*3600)+(min*60));
-        System.out.println((i+1)+"."+hor+"h "+min+"m "+seg+"s");
-    }
- }
-
 
 }
 
